@@ -1,0 +1,17 @@
+{
+  "name": "vacbot",
+  "version": "1.0.0",
+  "description": "Moyos JS Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js debug",
+    "start": "node index.js"
+  },
+  "author": "Moyo",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "colors": "^1.4.0",
+    "request": "^2.88.2"
+  }
+}
