@@ -92,7 +92,7 @@ function cmd_notify(msg, args) {
         }
         catch (err){
             console.log(err.message);
-            continue;
+            return;
         }
     }
     else{
@@ -134,7 +134,7 @@ async function cmd_add(msg, args) {
             let res = await resolveVanityURL(url.split('/id/')[1]);
             if(res == 'error'){
                 msg.channel.send("couldn't resolve vanity URL!");
-                return
+                return;
             }
             steam64 = res;
         }
@@ -189,7 +189,7 @@ async function cmd_add(msg, args) {
         }
         catch (err){
             console.log(err.message);
-            continue;
+            return;
         }
     }
     else{
