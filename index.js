@@ -9,6 +9,11 @@ var client = new Discord.Client()
 
 client.on('ready', () => {
     console.log('\x1b[36m%s\x1b[0m',`Logged in as ${client.user.username}...`);
+
+    if(!fs.existsSync('./users/')){
+        fs.mkdirSync('./users/');
+    }
+
     setInterval(() => {
         console.log('\x1b[92m%s\x1b[0m','Checking for bans...');
         checkForVacs();
@@ -85,8 +90,9 @@ function cmd_notify(msg, args) {
                 }
             }
         }
-        catch{
-            console.log(err)
+        catch (err){
+            console.log(err.message);
+            continue;
         }
     }
     else{
@@ -156,7 +162,7 @@ async function cmd_add(msg, args) {
                     }
                 })
                 //message for first time users?
-                msg.channel.send(`Config file has been created. Use \"${config.prefix}help\" for additional informations`);
+                msg.channel.send(`\`Config file has been created. Use \"${config.prefix}help\" for additional informations\``);
             }
             else{
                 //file exists and can be opened
@@ -179,9 +185,11 @@ async function cmd_add(msg, args) {
                 msg.channel.send('added steam64ID: ' + steam64);
                 console.log('added steam64id: ' + steam64);
             }
+            msg.channel.send('Steam Profile successfully added to your watchlist')
         }
-        catch{
-            console.log(err)
+        catch (err){
+            console.log(err.message);
+            continue;
         }
     }
     else{
@@ -223,16 +231,13 @@ function checkPlayerArray(jsonObj, resArray, discordid){
         const channel = await client.channels.fetch(jsonObj['channel']).catch(() => null);
 
         resArray.forEach(element => {
-            //console.log(element.SteamId)
-            if(element.VACBanned == true){
-            //if((element.VACBanned == true || element.NumberOfGameBans > 0) && DaysSinceLastBan == 0){
+            //if(element.VACBanned == true){ //if condition for testing purposes
+            if((element.VACBanned == true || element.NumberOfGameBans > 0) && DaysSinceLastBan == 0){
                 console.log(element.SteamId + " has been VAC banned.");
                 if(jsonObj['notify'] == 'dm'){
-                    //const user = await client.users.fetch(discordid).catch(() => null);
                     if(!user) return console.log('\x1b[31m%s\x1b[0m','user not found');
                     user.send('User ' + element.SteamId + ' has been banned.\nhttps://steamcommunity.com/profiles/' + element.SteamId).catch(() => {
                         console.log('\x1b[31m%s\x1b[0m','can\'t dm user. Trying saved channel');
-                        //const channel = await client.channels.fetch(jsonObj['channel']).catch(() => null);
                         if(!channel) return console.log('\x1b[31m%s\x1b[0m','channel not found');
                         channel.send('<@' + discordid + '> User ' + element.SteamId + ' has been banned.\nhttps://steamcommunity.com/profiles/' + element.SteamId).catch(() => {
                             console.log('\x1b[31m%s\x1b[0m','can\'t find channel')
@@ -240,7 +245,6 @@ function checkPlayerArray(jsonObj, resArray, discordid){
                     })
                 }
                 else{
-                    //const channel = await client.channels.fetch(jsonObj['channel']).catch(() => null);
                     if(!channel) return console.log('user not found');
                     channel.send('<@' + discordid + '> User ' + element.SteamId + ' has been banned.\nhttps://steamcommunity.com/profiles/' + element.SteamId).catch(() => {
                         console.log('\x1b[31m%s\x1b[0m','can\'t find channel')
