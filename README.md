@@ -13,7 +13,7 @@ To use this bot you need to have [NodeJS](https://nodejs.org/en/download/) insta
 Clone the repository and rename &quot;config.json.example&quot; to &quot;config.json&quot;.\
 Put your discord bot token and steam api key inside the config file.\
 Start cmd / powershell in your directory and type `npm install` to install all the dependencies.\
-Then type `npm start` or `node index.js` to start the bot.\
+Then type `npm start` or `node index.js` to start the bot.
 
 #### Linux
 To use this bot you need to have [NodeJS](https://nodejs.org/en/download/) installed.\
@@ -22,7 +22,7 @@ You can run the following command to add the latest version:\
 `$ curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -`\
 Then you can actually install NodeJS and NPM\
 `$ sudo apt-get install -y nodejs`\
-`$ sudo apt-get install -y npm`\
+`$ sudo apt-get install -y npm`
 
 Go to the directory you want the bot to be installed at and clone the repository\
 `$ git clone https://github.com/Moyomo/DiscordVacBot`\
@@ -30,7 +30,7 @@ Then rename &quot;config.json.example&quot; to &quot;config.json&quot; with the 
 `$ mv config.json.example config.json`\
 Put your discord bot token and steam api key inside the config file.\
 To load all the required dependencies use `$ npm install`\
-Then type `npm start` or `node index.js` to start the bot.\
+Then type `npm start` or `node index.js` to start the bot.
 
 ## To Do
 - embed bot messages (and add hyperlinks for steam profiles)
