@@ -14,6 +14,9 @@ client.on('ready', () => {
         fs.mkdirSync('./users/');
     }
 
+    console.log('\x1b[92m%s\x1b[0m','Checking for bans...');
+    checkForVacs();
+
     setInterval(() => {
         console.log('\x1b[92m%s\x1b[0m','Checking for bans...');
         checkForVacs();
@@ -232,7 +235,7 @@ function checkPlayerArray(jsonObj, resArray, discordid){
 
         resArray.forEach(element => {
             //if(element.VACBanned == true){ //if condition for testing purposes
-            if((element.VACBanned == true || element.NumberOfGameBans > 0) && DaysSinceLastBan == 0){
+            if((element.VACBanned == true || element.NumberOfGameBans > 0) && element.DaysSinceLastBan == 0){
                 console.log(element.SteamId + " has been VAC banned.");
                 if(jsonObj['notify'] == 'dm'){
                     if(!user) return console.log('\x1b[31m%s\x1b[0m','user not found');
