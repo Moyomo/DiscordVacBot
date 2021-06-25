@@ -3,8 +3,8 @@ A discord bot for automated notifications when steam accounts get VAC or game ba
 
 This is my first time working with JavaScript and I was learning the syntax on the go so don&apos;t expect perfect code.
 At first I had problems with asynchronous parts like file reading/writing and API calls.
-The bot is simple and should be working without any bigger problems.
-I&apos;ll probably improve it in the future. If you find any bugs please let me know.
+The bot is simple and should be working without any bigger problems,
+but I&apos;ll probably improve it in the future. If you find any bugs please let me know.
 Also feel free to create a fork & merge request if you want to contribute.
 
 ## Setup
@@ -37,5 +37,8 @@ Then type `npm start` or `node index.js` to start the bot.
 - wrap everything in try catch blocks and improve error handling
 - first time setup introduction (automated config renaming and asking for API key, token etc.)
 - add a list command to list all saved steam profiles
-- fix the message splitting to allow spaces after the prefix
+- adjust the message splitting to allow spaces after the prefix
 - add timestamps to console output
+- message the bot owner in case of an error
+- when adding a profile log current ban status to prevent missing bans during bot downtime
+- add ban counter (added / banned stats) command
