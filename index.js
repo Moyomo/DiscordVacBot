@@ -161,6 +161,7 @@ async function cmd_add(msg, args) {
                         console.log(err);
                     }
                 })
+                console.log('added steam64id: ' + steam64);
                 //message for first time users?
                 msg.channel.send(`\`Config file has been created. Use \"${config.prefix}help\" for additional informations\``);
             }
@@ -182,10 +183,9 @@ async function cmd_add(msg, args) {
                         console.log(err);
                     }
                 })
-                msg.channel.send('added steam64ID: ' + steam64);
                 console.log('added steam64id: ' + steam64);
             }
-            msg.channel.send('Steam Profile successfully added to your watchlist')
+            msg.channel.send('Steam profile successfully added to your watchlist')
         }
         catch (err){
             console.log(err.message);
@@ -193,7 +193,7 @@ async function cmd_add(msg, args) {
         }
     }
     else{
-        msg.channel.send("That's not a valid Steam Profile URL!")
+        msg.channel.send("That's not a valid Steam profile URL!")
     }
 }
 
