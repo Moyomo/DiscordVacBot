@@ -42,3 +42,5 @@ Then type `npm start` or `node index.js` to start the bot.
 - message the bot owner in case of an error
 - when adding a profile log current ban status to prevent missing bans during bot downtime
 - add ban counter (added / banned stats) command
+- add an optional note for saved profiles
+- check if steam /profile/ links are valid 
