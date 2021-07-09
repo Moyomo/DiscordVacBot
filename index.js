@@ -1,11 +1,11 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js');
 const request = require('request');
 const fs      = require('fs');
 const { emitKeypressEvents } = require('readline');
 
-const config = JSON.parse(fs.readFileSync('config.json','utf-8'))
+const config = JSON.parse(fs.readFileSync('config.json','utf-8'));
 
-var client = new Discord.Client()
+var client = new Discord.Client();
 
 client.on('ready', () => {
     console.log('\x1b[36m%s\x1b[0m',`Logged in as ${client.user.username}...`);
@@ -99,7 +99,7 @@ function cmd_notify(msg, args) {
         }
     }
     else{
-        msg.channel.send(`Please use one of the following keywords to set the notification type: \`dm\`,\`channel\`,\`here\`\nExample: \`${config.prefix}notify dm\` -> set notification type to direct message`)
+        msg.channel.send(`Please use one of the following keywords to set the notification type: \`dm\`,\`channel\`,\`here\`\nExample: \`${config.prefix}notify dm\` -> set notification type to direct message`);
     }
 }
 
@@ -121,8 +121,8 @@ function cmd_help(msg, args) {
 
 async function cmd_add(msg, args) {
     var expression = /https:\/\/steamcommunity.com\/(profiles\/[0-9]{17}|id\/.+)\/?/gi
-    var regex = new RegExp(expression)
-    var url = args[0]
+    var regex = new RegExp(expression);
+    var url = args[0];
 
     if(args[0] == null) {
         msg.channel.send(`To use this command type \"${config.prefix}add\" followed by a steam profile URL\nExample: \`${config.prefix}add https://steamcommunity.com/id/popflashed/\``);
@@ -130,7 +130,7 @@ async function cmd_add(msg, args) {
     }
 
     if(url.match(regex)) {
-        var steam64 = 'id:'
+        var steam64 = 'id:';
         if(url.includes('/id/')){
             //API Call GET SteamId64 from vanityURL
             if(url.slice(-1) == '/') url = url.slice(0, -1);
@@ -174,7 +174,7 @@ async function cmd_add(msg, args) {
                 let jsonObj = JSON.parse(jsonRaw);
 
                 if(jsonObj['urls'].includes(steam64)){
-                    console.log('\x1b[31m%s\x1b[0m','WARNING: Steam64ID already in URLs array!')
+                    console.log('\x1b[31m%s\x1b[0m','WARNING: Steam64ID already in URLs array!');
                     msg.channel.send('You already added this profile to the watchlist');
                     return;
                 }
@@ -188,7 +188,7 @@ async function cmd_add(msg, args) {
                 })
                 console.log('added steam64id: ' + steam64);
             }
-            msg.channel.send('Steam profile successfully added to your watchlist')
+            msg.channel.send('Steam profile successfully added to your watchlist');
         }
         catch (err){
             console.log(err.message);
@@ -196,7 +196,7 @@ async function cmd_add(msg, args) {
         }
     }
     else{
-        msg.channel.send("That's not a valid Steam profile URL!")
+        msg.channel.send("That's not a valid Steam profile URL!");
     }
 }
 
@@ -243,14 +243,14 @@ function checkPlayerArray(jsonObj, resArray, discordid){
                         console.log('\x1b[31m%s\x1b[0m','can\'t dm user. Trying saved channel');
                         if(!channel) return console.log('\x1b[31m%s\x1b[0m','channel not found');
                         channel.send('<@' + discordid + '> User ' + element.SteamId + ' has been banned.\nhttps://steamcommunity.com/profiles/' + element.SteamId).catch(() => {
-                            console.log('\x1b[31m%s\x1b[0m','can\'t find channel')
+                            console.log('\x1b[31m%s\x1b[0m','can\'t find channel');
                         })
                     })
                 }
                 else{
-                    if(!channel) return console.log('user not found');
+                    if(!channel) return console.log('channel not found');
                     channel.send('<@' + discordid + '> User ' + element.SteamId + ' has been banned.\nhttps://steamcommunity.com/profiles/' + element.SteamId).catch(() => {
-                        console.log('\x1b[31m%s\x1b[0m','can\'t find channel')
+                        console.log('\x1b[31m%s\x1b[0m','can\'t find channel');
                     })
                 }
                 //remove steamid from saved URL array
@@ -308,9 +308,9 @@ client.on('message', (msg) => {
             args   = cont.split(' ').slice(1);
         
         if(invoke in cmdmap){
-            cmdmap[invoke](msg, args)
+            cmdmap[invoke](msg, args);
         }
     }
 })
 
-client.login(config.token)
+client.login(config.token);
