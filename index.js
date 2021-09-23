@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const request = require('request');
 const fs      = require('fs');
-const { emitKeypressEvents } = require('readline');
 
 const config = JSON.parse(fs.readFileSync('config.json','utf-8'));
 
@@ -120,7 +119,7 @@ function cmd_help(msg, args) {
 }
 
 async function cmd_add(msg, args) {
-    var expression = /https:\/\/steamcommunity.com\/(profiles\/[0-9]{17}|id\/.+)\/?/gi
+    var expression = /https:\/\/steamcommunity.com\/(profiles\/[0-9]{17}|id\/.+)\/?/i
     var regex = new RegExp(expression);
     var url = args[0];
 
@@ -206,7 +205,7 @@ function checkForVacs(){
             return console.log('\x1b[31m%s\x1b[0m','unable to read userconfig files');
         }
         files.forEach(async function(file){
-            var discordid = file.slice(0,17);
+            var discordid = file.slice(0,-5);
             let jsonRaw = fs.readFileSync('./users/' + file);
             let jsonObj = JSON.parse(jsonRaw);
 
@@ -273,7 +272,7 @@ function resolveVanityURL(vanityURL){
             if(!error && response.statusCode == 200){
                 var resp = JSON.parse(body);
                 if(resp.response.success == 1) resolve(resp.response.steamid);
-                else resolve('error');
+                else reject('error');
             }
             else{
                 reject('error');

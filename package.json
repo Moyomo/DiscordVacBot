@@ -1,5 +1,5 @@
 {
-  "name": "DiscordVacBot",
+  "name": "discordvacbot",
   "version": "1.0.1",
   "description": "Moyos JS Discord Bot",
   "main": "index.js",
