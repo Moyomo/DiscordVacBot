@@ -1,6 +1,4 @@
 {
     "token": "",
-    "steamApiKey": "",
-    "owner": "",
-    "prefix": "!"
+    "steam_API_key": ""
 }

@@ -1,47 +1,78 @@
 # Discord VAC Notification Bot
-A discord bot for automated notifications when steam accounts get VAC or game banned
 
-This is my first time working with JavaScript and I was learning the syntax on the go so don&apos;t expect perfect code.
-At first I had problems with asynchronous parts like file reading/writing and API calls.
-The bot is simple and should be working without any bigger problems,
-but I&apos;ll probably improve it in the future. If you find any bugs please let me know.
-Also feel free to create a fork & merge request if you want to contribute.
+### Table of Contents
+
+1. [General Info](#general-info)
+2. [Commands](#commands)
+3. [Setup](#setup)
+
+## General Info
+
+This Discord bot automatically notifies users when tracked Steam profiles receive any kind of ban.\
+Every user can create their own personal watchlist which can contain an unlimited amount of Steam profiles.
+
+The following ban types can be tracked:
+- VAC bans
+- game bans
+- community bans
+- economy bans
+
+The bot will check for bans once during startup and then continually check every hour.
+
+Whenever an untracked suspect gets added to a watchlist, the bot will create a database entry with the current ban status.\
+So even if the bot is then offline for a while, as soon as it goes back online it will notify about all bans that happened during the downtime.
+
+Since the ban status is saved in a database, the bot can also notify users about ban lifts. This is always enabled, so if a user tracks some suspect's VAC bans they will also get notified when an old VAC ban gets removed.
+
+By default the bot will notify via direct message but if a user closed their DMs or doesn't want the bot to directly message them, there is a command that can be used to set the channel in which the bot should send notifications for them.
+
+You can also use the `/suspect` command to get all the public ban info about a Steam user, even if they're not on your watchlist.
+
+![Adding new suspects](https://i.imgur.com/E9XIi87.png)
+
+![Show your watchlist](https://i.imgur.com/kGaHCyG.png)
+
+
+## Commands
+- `/add <steamID> [notes] [ban types]`\
+Adds a Steam profile to your personal watchlist\
+► **notes**: Your personal notes about the suspect\
+► **ban types**: The ban types you want to track (VAC, community, ...) 
+
+- `/edit <steamID> [notes] [banTypes]`\
+Edits a suspect entry on your watchlist\
+► **notes**: Your personal notes about the suspect\
+► **ban types**: The ban types you want to track (VAC, community, ...) 
+
+- `/remove <steamID>`\
+Removes a suspect entry from your watchlist
+
+- `/list`\
+Lists all suspect entries on your watchlist
+
+- `/suspect <steamID>`\
+Shows ban status and general info about a specific Steam user\
+→ If they're on your watchlist it will also show info about your suspect entry
+
+- `/notify <notification type>`\
+Changes the channel in which the bot will notify you about bans and ban lifts\
+► **notification type**: Where you want to be notified (DMs, server channel)
+
+- `/help`\
+Sends a message with information about the bot and all commands
+
+ℹ **Instead of the steam ID you can use the following values as parameter:**
+- Steam 64 ID
+- Steam profile link (/profile/ or /id/ URL)
+- Vanity URL (custom profile URL)
+- watchlist ID (entry number in `/list` command) [doesn't work for `/add` command]
+
 
 ## Setup
-#### Windows
-To use this bot you need to have [NodeJS](https://nodejs.org/en/download/) installed (I recommend the LTS version).\
-Clone the repository and rename &quot;config.json.example&quot; to &quot;config.json&quot;.\
-Put your discord bot token and steam api key inside the config file.\
-Start cmd / powershell in your directory and type `npm install` to install all the dependencies.\
-Then type `npm start` or `node index.js` to start the bot.
 
-#### Linux
-To use this bot you need to have [NodeJS](https://nodejs.org/en/download/) installed.\
-When installing NodeJs via package manager (at least with apt) you&apos;ll most likely get an outdated version.\
-You can run the following command to add the latest version:\
-`$ curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -`\
-Then you can actually install NodeJS and NPM\
-`$ sudo apt-get install -y nodejs`\
-`$ sudo apt-get install -y npm`
-
-Go to the directory you want the bot to be installed at and clone the repository\
-`$ git clone https://github.com/Moyomo/DiscordVacBot`\
-Then rename &quot;config.json.example&quot; to &quot;config.json&quot; with the following command:\
-`$ mv config.json.example config.json`\
-Put your discord bot token and steam api key inside the config file.\
-To load all the required dependencies use `$ npm install`\
-Then type `npm start` or `node index.js` to start the bot.
-
-## To Do
-- embed bot messages (and add hyperlinks for steam profiles)
-- wrap everything in try catch blocks and improve error handling
-- first time setup introduction (automated config renaming and asking for API key, token etc.)
-- add a list command to list all saved steam profiles
-- adjust the message splitting to allow spaces after the prefix
-- add timestamps to console output
-- message the bot owner in case of an error
-- when adding a profile log current ban status to prevent missing bans during bot downtime
-- add ban counter (added / banned stats) command
-- add an optional note for saved profiles
-- check if steam /profile/ links are valid 
-- add a command to remove profiles from the list
+1. To use this bot you need to have [Node.js](https://nodejs.org/en/download/) installed (I recommend the LTS version)
+2. Clone the repository and rename `config.json.example` to `config.json`
+3. Put your Discord bot token and Steam API key inside the config file
+4. Open a terminal window (or cmd / Powershell on Windows) in your bot directory\
+ and type `npm install` to install the required dependencies
+5. Type `npm start` or `node index.js` to start the bot
