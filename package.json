@@ -1,17 +1,19 @@
 {
   "name": "discordvacbot",
-  "version": "1.0.1",
-  "description": "Moyos JS Discord Bot",
+  "version": "1.2.0",
+  "description": "Moyo's JS Discord VAC bot",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "node index.js debug",
     "start": "node index.js"
   },
   "author": "Moyomo",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "dependencies": {
-    "discord.js": "^12.5.3",
-    "colors": "^1.4.0",
-    "request": "^2.88.2"
+    "discord.js": "^14.7.1",
+    "sequelize": "^6.29.1",
+    "sqlite3": "^5.1.4",
+    "node-fetch": "^3.3.0"
   }
 }
