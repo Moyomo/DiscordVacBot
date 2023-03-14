@@ -13,7 +13,7 @@
   "dependencies": {
     "discord.js": "^14.7.1",
     "sequelize": "^6.29.1",
-    "sqlite3": "^5.1.4",
+    "sqlite3": "^5.1.5",
     "node-fetch": "^3.3.0"
   }
 }
