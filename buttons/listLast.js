@@ -33,16 +33,13 @@ export async function listLast(interaction) {
 
     let pageCount = Math.ceil(all_entries.length / 10);
 
-    let page = Number(interaction.customId.split('_')[1]);
-    if (page + 1 <= pageCount) page++;
-
     let steam_links = [];
     let date_added = [];
     let notes = [];
 
     for (let i = (pageCount - 1) * 10; i < all_entries.length; i++) {
         const entry = all_entries[i];
-        steam_links.push(`${i + 1}. ` + hyperlink(`${entry.name}`, `https://steamcommunity.com/profiles/${entry.steam_id}/`));
+        steam_links.push(`${i + 1}\u200b. ` + hyperlink(`${entry.name}`, `https://steamcommunity.com/profiles/${entry.steam_id}/`));
         date_added.push(dateFormat(entry.createdAt));
         notes.push(entry.notes == '' ? '-' : entry.notes.length > 40 ? `${entry.notes.slice(0, 40)}...` : entry.notes.slice(0, 43));
     }

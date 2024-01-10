@@ -42,7 +42,7 @@ export async function listPrevious(interaction) {
 
     for (let i = (page - 1) * 10; i < (page == pageCount ? all_entries.length : page * 10); i++) {
         const entry = all_entries[i];
-        steam_links.push(`${i + 1}. ` + hyperlink(`${entry.name}`, `https://steamcommunity.com/profiles/${entry.steam_id}/`));
+        steam_links.push(`${i + 1}\u200b. ` + hyperlink(`${entry.name}`, `https://steamcommunity.com/profiles/${entry.steam_id}/`));
         date_added.push(dateFormat(entry.createdAt));
         notes.push(entry.notes == '' ? '-' : entry.notes.length > 40 ? `${entry.notes.slice(0, 40)}...` : entry.notes.slice(0, 43));
     }

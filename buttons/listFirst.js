@@ -41,7 +41,7 @@ export async function listFirst(interaction) {
 
     for (let i = 0; i < (fitsOnOnePage ? all_entries.length : 10); i++) {
         const entry = all_entries[i];
-        steam_links.push(`${i + 1}. ` + hyperlink(`${entry.name}`, `https://steamcommunity.com/profiles/${entry.steam_id}/`));
+        steam_links.push(`${i + 1}\u200b. ` + hyperlink(`${entry.name}`, `https://steamcommunity.com/profiles/${entry.steam_id}/`));
         date_added.push(dateFormat(entry.createdAt));
         notes.push(entry.notes == '' ? '-' : entry.notes.length > 40 ? `${entry.notes.slice(0, 40)}...` : entry.notes.slice(0, 43));
     }
