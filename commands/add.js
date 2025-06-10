@@ -117,6 +117,9 @@ export async function execute(interaction) {
 
     // if there is no DB entry, create one
     if (!suspect) {
+
+        await new Promise(r => setTimeout(r, 1000));
+
         try {
             let res = await fetch(`https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=${config.steam_API_key}&steamids=${steam_id}`);
             let json = await res.json();
@@ -178,6 +181,9 @@ export async function execute(interaction) {
 
     // get Steam profile info
     try {
+        
+        await new Promise(r => setTimeout(r, 1000));
+
         let res = await fetch(`http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${config.steam_API_key}&steamids=${steam_id}`)
         let json = await res.json();
         if (json.response.players.length == 0) {
