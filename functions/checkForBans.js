@@ -18,11 +18,16 @@ export async function checkForBans() {
     });
 
     while (suspect_ids.length) {
+
+        // sleep for 5 seconds to prevent rate limiting
+        await new Promise(r => setTimeout(r, 5000));
+
         let suspects = suspect_ids.splice(0, 99);
         let json = {};
 
         try {
             let res = await fetch(`https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=${config.steam_API_key}&steamids=${suspects.join(',')}`);
+            if (!res.ok) throw new Error(`API call returned HTTP response code ${res.status} - ${res.statusText ?? ""}`);
             json = await res.json();
         }
         catch (err) {
