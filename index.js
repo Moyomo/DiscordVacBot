@@ -27,7 +27,7 @@ for (const file of commandFiles) {
 }
 
 // bot initialization
-client.once('ready', async () => {
+client.once('clientReady', async () => {
 
     // sync database models
     // NOTE:
